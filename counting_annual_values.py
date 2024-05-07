@@ -1,7 +1,7 @@
 import datetime
 
 
-def count_annual_values_new(prev_dict, curr_dict):
+def count_annual_values(prev_dict, curr_dict):
     amount_of_days = count_days(prev_dict["date"], curr_dict["date"])
     diff_km = count_differences_in_total_value(prev_dict["total_distance"], curr_dict["total_distance"])
     yearly_km = count_yearly_values_for_km_and_engine_hours(amount_of_days, diff_km)
@@ -9,7 +9,7 @@ def count_annual_values_new(prev_dict, curr_dict):
     yearly_engine_hours = count_yearly_values_for_km_and_engine_hours(amount_of_days, diff_engine_hours)
     diff_fuel = count_differences_in_total_value(prev_dict["total_fuel_consumption"], curr_dict["total_fuel_consumption"])
     average_fuel_consumption_per_100_km = count_average_fuel_consumption_per_100_km(diff_fuel, diff_km)
-    return [int(yearly_km), int(yearly_engine_hours), round(average_fuel_consumption_per_100_km, 1)]
+    return [int(yearly_km), int(yearly_engine_hours), round(average_fuel_consumption_per_100_km, 1), curr_dict["date"]]
 
 
 def count_yearly_values_for_km_and_engine_hours(amount_of_days, value_difference):

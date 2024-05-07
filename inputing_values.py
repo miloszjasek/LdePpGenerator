@@ -22,12 +22,12 @@ def input_initial_value(value_name):
 
 
 def ask_for_answer():
-    print("If yes type in \"Y\", else type in \"N\".")
+    print("If yes type in \"y\", else type in \"n\".")
     answer = input()
-    while answer != "Y" and answer != "N":
+    while answer != "y" and answer != "n":
         print("Please type in proper answer.")
         answer = input()
-    if answer == "Y":
+    if answer == "y":
         return True
     else:
         return False

@@ -1,140 +1,101 @@
 import datetime
-from counting_annual_values import count_annual_values_new
-from imputing_values import input_start_date, input_initial_values, ask_for_answer
+from counting_annual_values import count_annual_values
+from inputing_values import input_start_date, input_initial_values, ask_for_answer
 from checking_values import check_all_values
-from returning_messages import create_error_message
+from returning_messages import create_error_message, create_annual_value_message
+from creating_dicts import new_start_values, create_dict, create_initial_dict
+from checking_str_length import length_of_str
+from saving_to_files import create_output_folder, create_text_and_save
+
+template = "templates/LdePpMsgTmp.txt"
+inputs = "inputs/InsertData.txt"
 
 
-def create_dict(line):
-    temp_list = line.split(",")
-    temp_date = temp_list[2].split("-")
-    temp_list[2] = datetime.date(int(temp_date[0]), int(temp_date[1]), int(temp_date[2]))
-    info_dict = {
-        "chassis_series": temp_list[0],
-        "chassis_number": temp_list[1],
-        "date": temp_list[2],
-        "total_distance": temp_list[3],
-        "total_engine_hours": temp_list[4],
-        "total_fuel_consumption": temp_list[5]
-    }
-    return info_dict
+def proces_input(template, inputs):
 
-
-def proces_input():
-    outputPath = createOutputFolder()
     with open(inputs) as o:
         lines = o.readlines()
         print("Do you want to count annual values?")
         do_you_want_to_count_annual_values = ask_for_answer()
-        counter = 1
         curr_dict = create_dict(lines[1])
-        return_values_list = []
         dict_to_be_saved_list = [curr_dict]
         if do_you_want_to_count_annual_values:
-            start_date = input_start_date
+            return_values_list = []
+            len_list = []
+            mx_distance_str_len = 0
+            mx_engine_hours_str_len = 0
+            counter = 1
+            new_start_dict = new_start_values(curr_dict)
+            start_date = input_start_date()
             print("Do you want to input initial values(distance, engine_hours)?")
             do_you_want_to_input_initial_values = ask_for_answer()
-            initial_distance, initial_engine_hours = input_initial_values()
-            prev_dict = {
-                "date": start_date,
-                "total_distance": initial_distance,
-                "total_engine_hours": initial_engine_hours,
-                "total_fuel_consumption": 0
-            }
+            if do_you_want_to_input_initial_values:
+                initial_distance, initial_engine_hours = input_initial_values()
+            else:
+                initial_distance, initial_engine_hours = 0, 0
+            prev_dict = create_initial_dict(start_date, initial_distance, initial_engine_hours)
             is_error, error_dict = check_all_values(prev_dict, curr_dict)
             if is_error:
                 error_message = create_error_message(error_dict, counter)
-                return_values_list.append(error_message)
+                return_values_list.append((is_error, error_message))
+                len_list.append(0)
             else:
-                return_values_list.append(count_annual_values(prev_dict, curr_dict))
+                annual_values_list = count_annual_values(prev_dict, curr_dict)
+                curr_distance_str_len = length_of_str(annual_values_list[0])
+                if curr_distance_str_len > mx_distance_str_len:
+                    mx_distance_str_len = curr_distance_str_len
+                curr_engine_hours_str_len = length_of_str(annual_values_list[1])
+                if curr_engine_hours_str_len > mx_engine_hours_str_len:
+                    mx_engine_hours_str_len = curr_engine_hours_str_len
+                len_list.append((curr_distance_str_len, curr_engine_hours_str_len))
+                return_values_list.append((is_error, [counter] + annual_values_list))
+                prev_dict = curr_dict
             counter += 1
-
-
 
 
         for line in lines[2:]:
-            curr_info_dict = create_dict(line)
+            curr_dict = create_dict(line)
+            dict_to_be_saved_list.append(curr_dict)
             if do_you_want_to_count_annual_values:
-            #function required
-
-
-
-
-
-
-
-        if answer:
-            start_date = input_start_date_new()
-            print("Do you want to input initial values (distance, engine_hours)?")
-            answer = ask_for_answer()
-            if answer:
-                start_distance, start_engine_hours = input_initial_values()
+                is_error, error_dict = check_all_values(prev_dict, curr_dict)
+            if is_error:
+                error_message = create_error_message(error_dict, counter)
+                return_values_list.append((is_error, error_message))
+                len_list.append(0)
             else:
-                start_distance, start_engine_hours = 0, 0
-            prev_info_dict = {
-                "date": start_date,
-                "total_distance": start_distance,
-                "total_engine_hours": start_engine_hours,
-                "total_fuel_consumption": 0
-            }
-            curr_info_dict = create_dict(lines[1])
-            is_error, error_dict = check_all_values(prev_info_dict, curr_info_dict)
-            new_start_date, new_start_distance, new_start_engine_hours, new_start_fuel = new_start_values(
-                curr_info_dict)
-            counter = 1
-            if not is_error:
-                yearly_km, yearly_engine_hours, average_fuel_consumption_per_100_km = count_annual_values(start_date,
-                                                                                                          curr_info_dict[
-                                                                                                              "date"],
-                                                                                                          curr_info_dict[
-                                                                                                              "total_distance"],
-                                                                                                          start_distance,
-                                                                                                          curr_info_dict[
-                                                                                                              "total_engine_hours"],
-                                                                                                          start_engine_hours,
-                                                                                                          curr_info_dict[
-                                                                                                              "total_fuel_consumption"],
-                                                                                                          0)
-                print(str(counter) + "." + date_to_str(curr_info_dict["date"]) + " annual distance(km): " + str(
-                    yearly_km) + " | annual engine hours: " + str(
-                    yearly_engine_hours) + " | average fuel consumption per 100 km: " + str(
-                    average_fuel_consumption_per_100_km))
-                prev_info_dict = curr_info_dict
-            else:
-                print(create_error_message(error_dict, counter))
+                annual_values_list = count_annual_values(new_start_dict, curr_dict)
+                curr_distance_str_len = length_of_str(annual_values_list[0])
+                if curr_distance_str_len > mx_distance_str_len:
+                    mx_distance_str_len = curr_distance_str_len
+                curr_engine_hours_str_len = length_of_str(annual_values_list[1])
+                if curr_engine_hours_str_len > mx_engine_hours_str_len:
+                    mx_engine_hours_str_len = curr_engine_hours_str_len
+                len_list.append((curr_distance_str_len, curr_engine_hours_str_len))
+                return_values_list.append((is_error, [counter] + annual_values_list))
+                prev_dict = curr_dict
             counter += 1
-            for line in lines[2:]:
-                curr_info_dict = create_dict(line)
-                is_error, error_dict = check_all_values(prev_info_dict, curr_info_dict)
-                if not is_error:
-                    yearly_km, yearly_engine_hours, average_fuel_consumption_per_100_km = count_annual_values(
-                        new_start_date, curr_info_dict["date"], curr_info_dict["total_distance"], new_start_distance,
-                        curr_info_dict["total_engine_hours"], new_start_engine_hours,
-                        curr_info_dict["total_fuel_consumption"], new_start_fuel)
-                    print(str(counter) + "." + date_to_str(curr_info_dict["date"]) + " annual distance(km): " + str(
-                        yearly_km) + " | annual engine hours: " + str(
-                        yearly_engine_hours) + " | average fuel consumption per 100 km: " + str(
-                        average_fuel_consumption_per_100_km))
-                    prev_info_dict = curr_info_dict
-                else:
-                    print(create_error_message(error_dict, counter))
-                counter += 1
-        print("Do you want to save to files?")
-        answer = ask_for_answer()
-        if answer:
-            for line in lines[1:]:
-                # tmp, info_dict["chassis_series"], info_dict["chassis_number"], date = save_into_file_new(line)
-                line = line.replace("\n", "")
-                inTab = line.split(",")
-                # print(inTab)
-                tmp = readFile(tempalte)
-                tmp = replaceValue(tmp, "CHASSIS_SERIES", inTab[0])
-                tmp = replaceValue(tmp, "CHASSIS_NUMBER", inTab[1])
-                tmp = replaceDate(tmp, "MSG_DATE", inTab[2])
-                tmp = replaceValue(tmp, "TOTAL_DISTANCE", inTab[3])
-                tmp = replaceValue(tmp, "TOTAL_ENGINE", inTab[4])
-                tmp = replaceValue(tmp, "TOTAL_FUEL", inTab[5])
-                date = inTab[2].replace("-", "_")
-                saveOutputFile(tmp, outputPath, inTab[0], inTab[1], date)
 
-print(count_differences_in_total_value(100,10))
+        if do_you_want_to_count_annual_values:
+
+            for i in range(len(return_values_list)):
+                is_error, message = return_values_list[i]
+                len_tup = len_list[i]
+                if is_error:
+                    print(message)
+                else:
+                    print(create_annual_value_message(message, len_tup, mx_distance_str_len, mx_engine_hours_str_len))
+
+            print("Do you want to save to files?")
+            do_you_want_to_save_to_files = ask_for_answer()
+            if do_you_want_to_save_to_files:
+                output_path = create_output_folder()
+                for info_dict in dict_to_be_saved_list:
+                    create_text_and_save(info_dict, template, output_path)
+        else:
+            print("Saving to files.")
+            output_path = create_output_folder()
+            for info_dict in dict_to_be_saved_list:
+                create_text_and_save(info_dict, template, output_path)
+
+
+proces_input(template, inputs)
