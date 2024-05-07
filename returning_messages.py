@@ -1,5 +1,4 @@
 from operating_on_dates import date_to_str
-str(counter) + "." + date_to_str(curr_info_dict["date"]) + " annual distance(km): " + str(yearly_km) + " | annual engine hours: " + str(yearly_engine_hours) + " | average fuel consumption per 100 km: " + str(average_fuel_consumption_per_100_km)
 
 
 def create_error_message(error_dict, counter):
@@ -12,6 +11,14 @@ def create_error_message(error_dict, counter):
     return temp_str
 
 
-def create_annual_value_message(values_list):
-    temp_str = str(counter) + ". "
-    for value in values_list:
+def create_annual_value_message(message_list, len_tup, mx_distance_str_len, mx_engine_hours_str_len):
+    temp_str = str(message_list[0]) + ". " + date_to_str(message_list[4]) + " |"
+    mx_len_tup = (mx_distance_str_len, mx_engine_hours_str_len)
+    temp_list = [" annual distance(km): ", " | annual engine hours(h): ", " | average fuel consumption per 100 km: "]
+    for i in range(1, 4):
+
+        if i != 3:
+            temp_str += temp_list[i - 1] + str(message_list[i]) + " " * (mx_len_tup[i - 1] - len_tup[i - 1])
+        else:
+            temp_str += temp_list[i - 1] + str(message_list[i])
+    return temp_str
