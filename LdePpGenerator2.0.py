@@ -1,4 +1,9 @@
 import datetime
+from counting_annual_values import count_annual_values_new
+from imputing_values import input_start_date, input_initial_values, ask_for_answer
+from checking_values import check_all_values
+from returning_messages import create_error_message
+
 
 def create_dict(line):
     temp_list = line.split(",")
@@ -15,60 +20,16 @@ def create_dict(line):
     return info_dict
 
 
-def count_annual_values(prev_date, curr_date, curr_total_value_km, prev_total_value_km, curr_total_value_engine_hours, prev_total_value_engine_hours, curr_total_value_fuel, prev_total_value_fuel):
-    amount_of_days = count_days(prev_date, curr_date)
-    diff_km = count_differences_in_total_value(curr_total_value_km, prev_total_value_km)
-    yearly_km = count_yearly_values_for_km_and_engine_hours(amount_of_days, diff_km)
-    diff_engine_hours = count_differences_in_total_value(curr_total_value_engine_hours, prev_total_value_engine_hours)
-    yearly_engine_hours = count_yearly_values_for_km_and_engine_hours(amount_of_days, diff_engine_hours)
-    diff_fuel = count_differences_in_total_value(curr_total_value_fuel, prev_total_value_fuel)
-    average_fuel_consumption_per_100_km = count_average_fuel_consumption_per_100_km(diff_fuel, diff_km)
-    return int(yearly_km), int(yearly_engine_hours), round(average_fuel_consumption_per_100_km, 1)
-
-
-
-def count_yearly_values_for_km_and_engine_hours(amount_of_days, value_difference):
-    value_per_day = value_difference / amount_of_days
-    yearly_value = value_per_day * 365
-    return yearly_value
-
-
-def count_average_fuel_consumption_per_100_km(fuel_consumption_difference, distance_difference):
-    average_fuel_consumption_per_100_km = fuel_consumption_difference / distance_difference * 100
-    return average_fuel_consumption_per_100_km
-
-
-def count_differences_in_total_value(curr_total_value, prev_total_value):
-    return int(curr_total_value) - int(prev_total_value)
-
-
-def input_start_date():
-    print("Please type in start date(YYYY-MM-DD.")
-    date_str = input()
-    temp_list = date_str.split("-")
-    start_time = datetime.date(int(temp_list[0]), int(temp_list[1]), int(temp_list[2]))
-    return start_time
-
-
-def input_initial_values():
-    initial_distance = input_initial_value("distance")
-    initial_engine_hours = input_initial_value("engine hours")
-    return initial_distance, initial_engine_hours
-
-
-def input_initial_value(value_name):
-    print(f"input initial {value_name}")
-    value = input()
-    return int(value)
-
-
 def proces_input():
     outputPath = createOutputFolder()
     with open(inputs) as o:
         lines = o.readlines()
         print("Do you want to count annual values?")
         do_you_want_to_count_annual_values = ask_for_answer()
+        counter = 1
         curr_dict = create_dict(lines[1])
+        return_values_list = []
+        dict_to_be_saved_list = [curr_dict]
         if do_you_want_to_count_annual_values:
             start_date = input_start_date
             print("Do you want to input initial values(distance, engine_hours)?")
@@ -80,13 +41,21 @@ def proces_input():
                 "total_engine_hours": initial_engine_hours,
                 "total_fuel_consumption": 0
             }
-            
+            is_error, error_dict = check_all_values(prev_dict, curr_dict)
+            if is_error:
+                error_message = create_error_message(error_dict, counter)
+                return_values_list.append(error_message)
+            else:
+                return_values_list.append(count_annual_values(prev_dict, curr_dict))
+            counter += 1
 
-        annual_values_list = []
+
+
+
         for line in lines[2:]:
             curr_info_dict = create_dict(line)
             if do_you_want_to_count_annual_values:
-                #function required
+            #function required
 
 
 
@@ -167,3 +136,5 @@ def proces_input():
                 tmp = replaceValue(tmp, "TOTAL_FUEL", inTab[5])
                 date = inTab[2].replace("-", "_")
                 saveOutputFile(tmp, outputPath, inTab[0], inTab[1], date)
+
+print(count_differences_in_total_value(100,10))
