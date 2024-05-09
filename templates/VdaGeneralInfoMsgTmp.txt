@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SyncHardIndividualProduct
+    xmlns="http://www.volvo.com/vda/hardindividualproducttruckbus/1_0"
+    xmlns:node="http://esw.volvo.com/node/2_1"
+    xmlns:pv="http://esw.volvo.com/parametervalue/2_1"
+    xmlns:prod="http://esw.volvo.com/products/2_1"
+    xmlns:val="http://esw.volvo.com/value/1_0"
+    xmlns:volvo="http://www.volvo.com/group/common/1_0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" serviceID="SRV04266" serviceVersion="1.0" xsi:schemaLocation="http://www.volvo.com/vda/hardindividualproducttruckbus/1_0 HardIndividualProductTruckBus_1_0_0_final.xsd">
+    <volvo:ApplicationArea>
+        <volvo:Sender>
+            <volvo:LogicalID>VDA</volvo:LogicalID>
+            <volvo:TaskID>UPD</volvo:TaskID>
+        </volvo:Sender>
+        <volvo:CreationDateTime>2019-03-26T15:54:37.429569+01:00</volvo:CreationDateTime>
+        <volvo:BODID>VDA-20190326155424101501</volvo:BODID>
+    </volvo:ApplicationArea>
+    <DataArea>
+        <Sync recordSetCount="0000001" recordSetTotal="0000001">
+            <volvo:ActionCriteria>GeneralInformation</volvo:ActionCriteria>
+        </Sync>
+        <HardIndividualProduct>
+            <HardIndividualProductHeader/>
+            <Identification>
+                <ChassisID>
+                    <ChassisSeries>A</ChassisSeries>
+                    <ChassisNumber>888886</ChassisNumber>
+                </ChassisID>
+                <AliasID>
+                    <VIN>A0000000000888886</VIN>
+                </AliasID>
+            </Identification>
+            <CountryOfOperation>SWE</CountryOfOperation>
+            <RegistrationNumber>PG251003</RegistrationNumber>
+            <DeliveryDate>2016-10-25</DeliveryDate>
+            <Brand>
+                <BrandID>120</BrandID>
+            </Brand>
+            <OperatingStatus>
+                <LastServiceOperationID>7116500   </LastServiceOperationID>
+                <LastRepairMilage unitCode="km">000285711</LastRepairMilage>
+                <LastRepairDate>2019-01-07</LastRepairDate>
+            </OperatingStatus>
+            <GeneralDescription>
+                <ProductClass>24</ProductClass>
+                <ProductType>FH 42  T</ProductType>
+                <CompanyCode>T</CompanyCode>
+                <AftermarketModel>FH (4)</AftermarketModel>
+                <MarketingType>11MA016 </MarketingType>
+                <MainSpecificationWeek>16382</MainSpecificationWeek>
+                <BodySpecificationWeek>00000</BodySpecificationWeek>
+            </GeneralDescription>
+            <SpecialStatus>
+                <SpecialInformation>V</SpecialInformation>
+            </SpecialStatus>
+            <Coverage>
+                <CoverageCode>T01 </CoverageCode>
+            </Coverage>
+            <Coverage>
+                <CoverageCode>T01 </CoverageCode>
+            </Coverage>
+            <Factory>
+                <FactoryInvoiceDate>0001-01-01</FactoryInvoiceDate>
+                <FactoryOrderNumber>961078</FactoryOrderNumber>
+                <MainAssemblyDate>2016-09-21</MainAssemblyDate>
+                <BuildWeek>16383</BuildWeek>
+                <MainFactory>022</MainFactory>
+                <FinalFactory>022</FinalFactory>
+            </Factory>
+            <CommercialOrganization>
+                <SellingDealerID>025626</SellingDealerID>
+                <RepairingDealerID>  2555</RepairingDealerID>
+                <DeliveryImporter>0002555</DeliveryImporter>
+            </CommercialOrganization>
+            <EndCustomer>
+                <OwningEndCustomerID>1691271372</OwningEndCustomerID>
+                <UsingEndCustomerID>1691271372</UsingEndCustomerID>
+            </EndCustomer>
+        </HardIndividualProduct>
+    </DataArea>
+</SyncHardIndividualProduct>

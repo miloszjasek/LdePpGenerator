@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SyncHardIndividualProduct
+    xmlns="http://www.volvo.com/vda/hardindividualproducttruckbus/1_0"
+    xmlns:node="http://esw.volvo.com/node/2_1"
+    xmlns:pv="http://esw.volvo.com/parametervalue/2_1"
+    xmlns:prod="http://esw.volvo.com/products/2_1"
+    xmlns:val="http://esw.volvo.com/value/1_0"
+    xmlns:volvo="http://www.volvo.com/group/common/1_0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" serviceID="SRV04296" serviceVersion="1.0" xsi:schemaLocation="http://www.volvo.com/vda/hardindividualproducttruckbus/1_0 HardIndividualProductTruckBus_1_0_0_final.xsd">
+    <volvo:ApplicationArea>
+        <volvo:Sender>
+            <volvo:LogicalID>VDA</volvo:LogicalID>
+            <volvo:TaskID>UPD</volvo:TaskID>
+        </volvo:Sender>
+        <volvo:CreationDateTime>2019-05-27T10:47:26.489723+02:00</volvo:CreationDateTime>
+        <volvo:BODID>VDA-20190527104724101501</volvo:BODID>
+    </volvo:ApplicationArea>
+    <DataArea>
+        <Sync recordSetCount="0000001" recordSetTotal="0000001">
+            <volvo:ActionCriteria>Variants</volvo:ActionCriteria>
+        </Sync>
+        <HardIndividualProduct>
+            <HardIndividualProductHeader/>
+            <Identification>
+                <ChassisID>
+                    <ChassisSeries>A</ChassisSeries>
+                    <ChassisNumber>888886</ChassisNumber>
+                </ChassisID>
+                <AliasID>
+                    <VIN>A0000000000888886</VIN>
+                </AliasID>
+            </Identification>
+            <Specification>
+                <TechnicalSpecification>
+                    <Variant>
+                        <VariantFamilyID>K4C</VariantFamilyID>
+                        <VariantID>DAX</VariantID>
+                    </Variant>
+					<Variant>
+                        <VariantFamilyID>3ZE</VariantFamilyID>
+                        <VariantID>A1X</VariantID>
+                    </Variant>
+                </TechnicalSpecification>
+            </Specification>
+        </HardIndividualProduct>
+    </DataArea>
+</SyncHardIndividualProduct>
