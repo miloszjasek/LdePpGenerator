@@ -6,13 +6,13 @@ from returning_messages import create_error_message, create_annual_value_message
 from creating_dicts import new_start_values, create_dict, create_initial_dict
 from checking_str_length import length_of_str
 from saving_to_files import create_output_folder, create_text_and_save
+from printing_logo import print_logo
 
 template = "templates/LdePpMsgTmp.txt"
 inputs = "inputs/InsertData.txt"
 
 
 def proces_input(template, inputs):
-
     with open(inputs) as o:
         lines = o.readlines()
         print("Do you want to count annual values?")
@@ -51,7 +51,6 @@ def proces_input(template, inputs):
                 return_values_list.append((is_error, [counter] + annual_values_list))
                 prev_dict = curr_dict
             counter += 1
-
 
         for line in lines[2:]:
             curr_dict = create_dict(line)
@@ -98,4 +97,5 @@ def proces_input(template, inputs):
                 create_text_and_save(info_dict, template, output_path)
 
 
+print_logo()
 proces_input(template, inputs)
