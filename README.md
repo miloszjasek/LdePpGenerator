@@ -1,1 +1,1 @@
-"# LdePpGenerator2.0" 
+Program used for processing input files and counting annual values.
