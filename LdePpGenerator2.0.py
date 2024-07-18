@@ -57,22 +57,22 @@ def proces_input(template, inputs):
             dict_to_be_saved_list.append(curr_dict)
             if do_you_want_to_count_annual_values:
                 is_error, error_dict = check_all_values(prev_dict, curr_dict)
-            if is_error:
-                error_message = create_error_message(error_dict, counter)
-                return_values_list.append((is_error, error_message))
-                len_list.append(0)
-            else:
-                annual_values_list = count_annual_values(new_start_dict, curr_dict)
-                curr_distance_str_len = length_of_str(annual_values_list[0])
-                if curr_distance_str_len > mx_distance_str_len:
-                    mx_distance_str_len = curr_distance_str_len
-                curr_engine_hours_str_len = length_of_str(annual_values_list[1])
-                if curr_engine_hours_str_len > mx_engine_hours_str_len:
-                    mx_engine_hours_str_len = curr_engine_hours_str_len
+                if is_error:
+                    error_message = create_error_message(error_dict, counter)
+                    return_values_list.append((is_error, error_message))
+                    len_list.append(0)
+                else:
+                    annual_values_list = count_annual_values(new_start_dict, curr_dict)
+                    curr_distance_str_len = length_of_str(annual_values_list[0])
+                    if curr_distance_str_len > mx_distance_str_len:
+                        mx_distance_str_len = curr_distance_str_len
+                    curr_engine_hours_str_len = length_of_str(annual_values_list[1])
+                    if curr_engine_hours_str_len > mx_engine_hours_str_len:
+                        mx_engine_hours_str_len = curr_engine_hours_str_len
                 len_list.append((curr_distance_str_len, curr_engine_hours_str_len))
                 return_values_list.append((is_error, [counter] + annual_values_list))
                 prev_dict = curr_dict
-            counter += 1
+                counter += 1
 
         if do_you_want_to_count_annual_values:
 

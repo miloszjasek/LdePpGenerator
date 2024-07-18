@@ -30,7 +30,7 @@ def create_text_and_save(info_dict, template, output_path):
     message = replace_value(message, "CHASSIS_NUMBER", chassis_number)
     message = replace_value(message, "TOTAL_DISTANCE", info_dict["total_distance"])
     message = replace_value(message, "TOTAL_ENGINE", info_dict["total_engine_hours"])
-    message = replace_value(message, "TOTAL_FUEL", info_dict["total_fuel_consumption"])
+    message = replace_value(message, "TOTAL_FUEL", info_dict["total_fuel_consumption"].strip("\n"))
     message = replace_date(message, "MSG_DATE", date)
     save_to_file(message, output_path, chassis_series, chassis_number, date)
 

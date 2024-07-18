@@ -2,7 +2,7 @@ import datetime
 
 
 def input_start_date():
-    print("Please type in start date(YYYY-MM-DD.")
+    print("Please type in start date(YYYY-MM-DD).")
     date_str = input()
     temp_list = date_str.split("-")
     start_time = datetime.date(int(temp_list[0]), int(temp_list[1]), int(temp_list[2]))
