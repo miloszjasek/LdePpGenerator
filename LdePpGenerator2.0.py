@@ -1,4 +1,3 @@
-import datetime
 from counting_annual_values import count_annual_values
 from inputing_values import input_start_date, input_initial_values, ask_for_answer
 from checking_values import check_all_values
@@ -7,13 +6,18 @@ from creating_dicts import new_start_values, create_dict, create_initial_dict
 from checking_str_length import length_of_str
 from saving_to_files import create_output_folder, create_text_and_save
 from printing_logo import print_logo
+from generating_menus import generate_input_menu
 
 template = "templates/LdePpMsgTmp.txt"
-inputs = "inputs/InsertData.txt"
 
 
-def proces_input(template, inputs):
-    with open(inputs) as o:
+def menu():
+    input_file_path = generate_input_menu()
+    return 0
+
+
+def process_input(template_1, inputs_1):
+    with open(inputs_1) as o:
         lines = o.readlines()
         print("Do you want to count annual values?")
         do_you_want_to_count_annual_values = ask_for_answer()
@@ -89,13 +93,22 @@ def proces_input(template, inputs):
             if do_you_want_to_save_to_files:
                 output_path = create_output_folder()
                 for info_dict in dict_to_be_saved_list:
-                    create_text_and_save(info_dict, template, output_path)
+                    create_text_and_save(info_dict, template_1, output_path)
         else:
             print("Saving to files.")
             output_path = create_output_folder()
             for info_dict in dict_to_be_saved_list:
-                create_text_and_save(info_dict, template, output_path)
+                create_text_and_save(info_dict, template_1, output_path)
 
 
 print_logo()
-proces_input(template, inputs)
+inputs = generate_input_menu()
+process_input(template, inputs)
+print("Do you want to process more files?")
+answer = ask_for_answer()
+while answer:
+    print_logo()
+    inputs = generate_input_menu()
+    process_input(template, inputs)
+    print("Do you want to process more files?")
+    answer = ask_for_answer()

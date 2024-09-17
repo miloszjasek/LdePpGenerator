@@ -1,4 +1,4 @@
-header
+Chassis Series, Chassis Number, Date (YYYY-MM-dd), Total distance, Total Engine Hours, Total Fuel Consumption
 BBY,385589,2023-05-02,30000,1200,13500
 BBY,385589,2023-05-12,31000,1300,14400
 BBY,385589,2023-05-22,34000,1700,16500

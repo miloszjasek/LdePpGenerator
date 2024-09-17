@@ -31,3 +31,11 @@ def ask_for_answer():
         return True
     else:
         return False
+
+
+def ask_for_number(number_set):
+    answer = input()
+    while answer not in number_set:
+        print("Please type in proper answer.")
+        answer = input()
+    return int(answer)
