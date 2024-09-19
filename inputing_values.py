@@ -21,7 +21,8 @@ def input_initial_value(value_name):
     return int(value)
 
 
-def ask_for_answer():
+def ask_for_answer(question):
+    print(question)
     print("If yes type in \"y\", else type in \"n\".")
     answer = input()
     while answer != "y" and answer != "n":

@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9c8ab1b-1ce1-4546-a1b5-b2a43e54c650" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LdePpGenerator2.0.py" beforeDir="false" afterPath="$PROJECT_DIR$/LdePpGenerator2.0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checking_str_length.py" beforeDir="false" afterPath="$PROJECT_DIR$/checking_str_length.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inputing_values.py" beforeDir="false" afterPath="$PROJECT_DIR$/inputing_values.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputs/InsertData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/inputs/InsertData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/saving_to_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/saving_to_files.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +29,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -38,7 +43,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.LdePpGenerator2.0.executor": "Run",
+    "Python.LdePpGenerator2.0.executor": "Debug",
     "Python.generating_menus.executor": "Debug",
     "Python.inputing_values.executor": "Run",
     "Python.saving_to_files.executor": "Run",
@@ -76,16 +81,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/LdePpGenerator2.0.py</url>
-          <line>25</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

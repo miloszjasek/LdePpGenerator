@@ -49,3 +49,10 @@ def save_to_file(message, output_path, chassis_series, chassis_number, date):
     file_name = output_path + "/" + chassis_series + chassis_number + "_" + date + ".txt"
     with open(file_name, "w") as file:
         file.write(message)
+
+
+def saving_to_files(dict_to_be_saved_list, template_1):
+    print("Saving to files.")
+    output_path = create_output_folder()
+    for info_dict in dict_to_be_saved_list:
+        create_text_and_save(info_dict, template_1, output_path)
