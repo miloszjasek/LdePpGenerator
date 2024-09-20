@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9c8ab1b-1ce1-4546-a1b5-b2a43e54c650" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/defaults/defaults.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reading_from_files.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LdePpGenerator2.0.py" beforeDir="false" afterPath="$PROJECT_DIR$/LdePpGenerator2.0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generating_menus.py" beforeDir="false" afterPath="$PROJECT_DIR$/generating_menus.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/operating_on_dates.py" beforeDir="false" afterPath="$PROJECT_DIR$/operating_on_dates.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
