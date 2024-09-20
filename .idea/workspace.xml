@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9c8ab1b-1ce1-4546-a1b5-b2a43e54c650" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LdePpGenerator2.0.py" beforeDir="false" afterPath="$PROJECT_DIR$/LdePpGenerator2.0.py" afterDir="false" />
-    </list>
+    <list default="true" id="c9c8ab1b-1ce1-4546-a1b5-b2a43e54c650" name="Changes" comment="clean up code" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,6 +40,7 @@
     "Python.LdePpGenerator2.0.executor": "Run",
     "Python.generating_menus.executor": "Run",
     "Python.inputing_values.executor": "Run",
+    "Python.printing_logo.executor": "Run",
     "Python.saving_to_files.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -78,5 +76,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="clean up code" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up code" />
   </component>
 </project>
