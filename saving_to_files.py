@@ -36,7 +36,6 @@ def create_text_and_save(info_dict, template, output_path):
 
 
 def create_output_folder():
-    current_time = datetime.datetime.now()
     folder_name = str(datetime.datetime.now())[:19].replace(" ", "__").replace(":", "_")
     folder_path = "outputs/" + folder_name
     print("Output files located in folder : " + folder_path)
