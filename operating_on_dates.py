@@ -15,3 +15,11 @@ def date_to_str(date):
         day = str(day)
 
     return year + "-" + month + "-" + day
+
+
+def str_to_date(str_date):
+    year = str_date[0:4]
+    month = str_date[5:7]
+    day = str_date[8:]
+    date = datetime.date(int(year), int(month), int(day))
+    return date

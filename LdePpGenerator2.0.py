@@ -7,23 +7,25 @@ from checking_str_length import length_of_str, counting_mx_len_for_annual_values
 from saving_to_files import create_output_folder, create_text_and_save, saving_to_files
 from printing_logo import print_logo
 from generating_menus import generate_input_menu
+from reading_from_files import reading_defaults
 
 template = "templates/LdePpMsgTmp.txt"
+defaults = "defaults/defaults.txt"
 
 
-def process_input_with_annual_values(curr_dict, dict_to_be_saved_list, lines):
+def process_input_with_annual_values(curr_dict, dict_to_be_saved_list, lines, defaults_path):
     return_values_list = []
     len_list = []
     mx_distance_str_len = 0
     mx_engine_hours_str_len = 0
     counter = 1
     new_start_dict = new_start_values(curr_dict)
-    start_date = input_start_date()
-    do_you_want_to_input_initial_values = ask_for_answer("Do you want to input initial values(distance, engine_hours)?")
-    if do_you_want_to_input_initial_values:
-        initial_distance, initial_engine_hours = input_initial_values()
+    do_you_want_to_pull_initial_values_from_file = ask_for_answer("Do you want to pull initial values from file(date, distance, engine_hours)?")
+    if do_you_want_to_pull_initial_values_from_file:
+        start_date, initial_distance, initial_engine_hours = reading_defaults(defaults_path)
     else:
-        initial_distance, initial_engine_hours = 0, 0
+        start_date = input_start_date()
+        initial_distance, initial_engine_hours = input_initial_values()
     prev_dict = create_initial_dict(start_date, initial_distance, initial_engine_hours)
     is_error, error_dict = check_all_values(prev_dict, curr_dict)
     if is_error:
@@ -76,14 +78,14 @@ def process_input_without_annual_values(dict_to_be_saved_list, lines):
     return dict_to_be_saved_list
 
 
-def process_input_general(template_1, inputs_1):
+def process_input_general(template_1, inputs_1, defaults_path):
     with open(inputs_1) as o:
         lines = o.readlines()
     curr_dict = create_dict(lines[1])
     dict_to_be_saved_list = [curr_dict]
     do_you_want_to_count_annual_values = ask_for_answer("Do you want to count annual values?")
     if do_you_want_to_count_annual_values:
-        process_input_with_annual_values(curr_dict, dict_to_be_saved_list, lines)
+        process_input_with_annual_values(curr_dict, dict_to_be_saved_list, lines, defaults_path)
         do_you_want_to_save_to_files = ask_for_answer("Do you want to save to files?")
         if do_you_want_to_save_to_files:
             saving_to_files(dict_to_be_saved_list, template_1)
@@ -180,10 +182,10 @@ def process_input(template_1, inputs_1):
 
 print_logo()
 inputs = generate_input_menu()
-process_input_general(template, inputs)
+process_input_general(template, inputs, defaults)
 answer = ask_for_answer("Do you want to process more files?")
 while answer:
     print_logo()
     inputs = generate_input_menu()
-    process_input_general(template, inputs)
+    process_input_general(template, inputs, defaults)
     answer = ask_for_answer("Do you want to process more files?")
